@@ -1,0 +1,911 @@
+openapi: 3.0.1
+info:
+  title: Geo Service
+  description: Returns information about geographical locations
+  version: v1
+  contact: Inflection
+tags:
+  - name: US City
+  - name: US State
+  - name: US County
+  - name: US ZipCode
+paths:
+  /us-city:
+    get:
+      operationId: uscityget
+      tags:
+        - US City
+      description: Query City information using search options
+      summary: Query City information using search options
+      parameters:
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: zip
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: isoState
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: fipsCounty
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCityUs'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCityUs'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCityUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: uscityexists
+      tags:
+        - US City
+      description: Does a City exist using search options?
+      summary: Does a City exist using search options?
+      parameters:
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: isoState
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/us-city/{id}':
+    get:
+      operationId: uscitygetbyid
+      tags:
+        - US City
+      description: 'Get a City by its unique ID (of the form: CityName-StateIso)'
+      summary: 'Get a City by its unique ID (of the form: CityName-StateIso)'
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeoCityUs'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoCityUs'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeoCityUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: uscityexistsbyid
+      tags:
+        - US City
+      description: 'Does a City exist that has this unique ID (of the form: CityName-StateIso)?'
+      summary: 'Does a City exist that has this unique ID (of the form: CityName-StateIso)?'
+      parameters:
+        - name: id
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /us-county:
+    get:
+      operationId: uscountyget
+      tags:
+        - US County
+      description: Query County information using search options
+      summary: Query County information using search options
+      parameters:
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: zip
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: isoState
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCountyUs'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCountyUs'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoCountyUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: uscountyexists
+      tags:
+        - US County
+      description: Does a County exist using search options?
+      summary: Does a County exist using search options?
+      parameters:
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: isoState
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/us-county/{fips}':
+    get:
+      operationId: uscountygetbyid
+      tags:
+        - US County
+      description: Get a County by its Full FIPS code
+      summary: Get a County by its Full FIPS code
+      parameters:
+        - name: fips
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeoCountyUs'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoCountyUs'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeoCountyUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: uscountyexistsbyid
+      tags:
+        - US County
+      description: Does a County exist with the given Full FIPS code?
+      summary: Does a County exist with the given Full FIPS code?
+      parameters:
+        - name: fips
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /us-state:
+    get:
+      operationId: usstateget
+      tags:
+        - US State
+      description: Query State information using search options
+      summary: Query State information using search options
+      parameters:
+        - name: fipsCounty
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: zip
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoStateUs'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoStateUs'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoStateUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: usstateexists
+      tags:
+        - US State
+      description: Does a State exist using the given search options?
+      summary: Does a State exist using the given search options?
+      parameters:
+        - name: name
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: exactNameMatch
+          in: query
+          description: ''
+          schema:
+            type: boolean
+            description: ''
+            default: false
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/us-state/{isoState}':
+    get:
+      operationId: usstategetbyid
+      tags:
+        - US State
+      description: Get a State by ISO-3166 code
+      summary: Get a State by ISO-3166 code
+      parameters:
+        - name: isoState
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeoStateUs'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoStateUs'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeoStateUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: usstateexistsbyid
+      tags:
+        - US State
+      description: Does a State exist with the given ISO-3166 code?
+      summary: Does a State exist with the given ISO-3166 code?
+      parameters:
+        - name: isoState
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /us-zipcode:
+    get:
+      operationId: uszipget
+      tags:
+        - US ZipCode
+      description: Query Zip Code information using search options
+      summary: Query Zip Code information using search options
+      parameters:
+        - name: fipsCounty
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: isoState
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+        - name: idCity
+          in: query
+          description: ''
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoZipCodeUs'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoZipCodeUs'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GeoZipCodeUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  '/us-zipcode/{zip}':
+    get:
+      operationId: uszipgetbyzip
+      tags:
+        - US ZipCode
+      description: Fetch a Zip Code by number
+      summary: Fetch a Zip Code by number
+      parameters:
+        - name: zip
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/GeoZipCodeUs'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeoZipCodeUs'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/GeoZipCodeUs'
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    head:
+      operationId: uszipexistsbyzip
+      tags:
+        - US ZipCode
+      description: Does a Zip Code exist with the given number?
+      summary: Does a Zip Code exist with the given number?
+      parameters:
+        - name: zip
+          in: path
+          description: ''
+          required: true
+          schema:
+            type: string
+            description: ''
+            nullable: true
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  schemas:
+    GeoCountySimpleUs:
+      type: object
+      properties:
+        countyName:
+          type: string
+          nullable: true
+          readOnly: true
+        countyFips:
+          type: string
+          nullable: true
+          readOnly: true
+        fullFips:
+          type: string
+          nullable: true
+          readOnly: true
+        stateAbbreviation:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoZipCodeSimpleUs:
+      type: object
+      properties:
+        zipCode:
+          type: string
+          nullable: true
+          readOnly: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+          readOnly: true
+        longitude:
+          type: number
+          format: double
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoStateSimpleUs:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        abbreviation:
+          type: string
+          nullable: true
+          readOnly: true
+        isTerritory:
+          type: boolean
+          readOnly: true
+        countryCode:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoCityUs:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoCountySimpleUs'
+          nullable: true
+          readOnly: true
+        zipCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoZipCodeSimpleUs'
+          nullable: true
+          readOnly: true
+        state:
+          $ref: '#/components/schemas/GeoStateSimpleUs'
+      additionalProperties: false
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+      additionalProperties:
+        type: object
+        additionalProperties: false
+    GeoCitySimpleUs:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+          readOnly: true
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        stateAbbreviation:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoCountyUs:
+      type: object
+      properties:
+        countyName:
+          type: string
+          nullable: true
+          readOnly: true
+        countyFips:
+          type: string
+          nullable: true
+          readOnly: true
+        fullFips:
+          type: string
+          nullable: true
+          readOnly: true
+        state:
+          $ref: '#/components/schemas/GeoStateSimpleUs'
+        cities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoCitySimpleUs'
+          nullable: true
+          readOnly: true
+        zipCodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoZipCodeSimpleUs'
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoCountry:
+      type: object
+      properties:
+        countryIso:
+          type: string
+          nullable: true
+          readOnly: true
+        countryName:
+          type: string
+          nullable: true
+          readOnly: true
+      additionalProperties: false
+    GeoStateUs:
+      type: object
+      properties:
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+        abbreviation:
+          type: string
+          nullable: true
+          readOnly: true
+        isTerritory:
+          type: boolean
+          readOnly: true
+        country:
+          $ref: '#/components/schemas/GeoCountry'
+      additionalProperties: false
+    GeoZipCodeUs:
+      type: object
+      properties:
+        zipCode:
+          type: string
+          nullable: true
+          readOnly: true
+        latitude:
+          type: number
+          format: double
+          nullable: true
+          readOnly: true
+        longitude:
+          type: number
+          format: double
+          nullable: true
+          readOnly: true
+        cities:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoCitySimpleUs'
+          nullable: true
+          readOnly: true
+        counties:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoCountySimpleUs'
+          nullable: true
+          readOnly: true
+        states:
+          type: array
+          items:
+            $ref: '#/components/schemas/GeoStateSimpleUs'
+          nullable: true
+          readOnly: true
+        country:
+          $ref: '#/components/schemas/GeoCountry'
+      additionalProperties: false
+servers:
+  - url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/sandbox'
+    description: sandbox
+  - url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/prodution'
+    description: production
