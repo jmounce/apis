@@ -986,3 +986,9 @@ components:
         country:
           $ref: '#/components/schemas/GeoCountry'
       additionalProperties: false
+  securitySchemes: {}
+servers:
+  - description: sandbox
+    url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/sandbox'
+  - url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/production'
+    description: production
