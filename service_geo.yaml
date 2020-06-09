@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: Geo Service
-  description: Returns information about geographical locations
+  description: 'Returns information about geographical locations  '
   version: v1
   contact: Inflection
 tags:
