@@ -905,7 +905,7 @@ components:
           $ref: '#/components/schemas/GeoCountry'
       additionalProperties: false
 servers:
-  - url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/sandbox'
+  - url: 'https://tgt281fvid.execute-api.us-west-2.amazonaws.com/sandbox'
     description: sandbox
-  - url: 'https://lbg4zh0xxj.execute-api.us-west-2.amazonaws.com/prodution'
+  - url: 'https://tgt281fvid.execute-api.us-west-2.amazonaws.com/production'
     description: production
